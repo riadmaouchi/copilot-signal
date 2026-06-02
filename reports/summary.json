@@ -1,0 +1,57 @@
+[
+  {
+    "repo": "FrancescoCiulla/NLWeb",
+    "status": "ok",
+    "n_pairs": 19
+  },
+  {
+    "repo": "IstiN/dmtools-agents",
+    "status": "ok",
+    "n_pairs": 2
+  },
+  {
+    "repo": "Ronrock/Opaline",
+    "status": "ok",
+    "n_pairs": 1
+  },
+  {
+    "repo": "SamMRoberts/agentic-engineering",
+    "status": "ok",
+    "n_pairs": 16
+  },
+  {
+    "repo": "andy-herman/pensieve",
+    "status": "ok",
+    "n_pairs": 1
+  },
+  {
+    "repo": "battedeefly/animated",
+    "status": "ok",
+    "n_pairs": 3
+  },
+  {
+    "repo": "jhkidd/world-cup-2026-sweepstake",
+    "status": "ok",
+    "n_pairs": 12
+  },
+  {
+    "repo": "michaeljolley/io",
+    "status": "ok",
+    "n_pairs": 65
+  },
+  {
+    "repo": "microsoft/duroxide-pg",
+    "status": "ok",
+    "n_pairs": 9
+  },
+  {
+    "repo": "odlhassan/JIRA-SCRIPT",
+    "status": "ok",
+    "n_pairs": 12
+  },
+  {
+    "repo": "sennap/studio-senn",
+    "status": "ok",
+    "n_pairs": 7
+  }
+]

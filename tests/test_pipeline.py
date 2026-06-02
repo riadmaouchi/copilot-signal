@@ -71,6 +71,77 @@ def test_extract_merge_commit():
     assert s.is_merge is True
 
 
+# ── Patch content signals ──────────────────────────────────────────────────────
+
+def _commit_with_patch(sha, patch: str, language="python") -> Commit:
+    from copilotsig.models import Language as L
+    lang = {"python": L.PYTHON, "typescript": L.TYPESCRIPT}.get(language, L.PYTHON)
+    return Commit(
+        sha=sha, repo="owner/repo", author="alice",
+        date=BASE_DATE,
+        message=PLAIN_MSG,
+        files=[CommitFile(filename="src/foo.py", language=lang,
+                          additions=5, deletions=0, patch=patch)],
+    )
+
+def test_comment_density_python():
+    patch = "\n".join([
+        "+def foo():",
+        "+    # this is a comment",
+        "+    return 1",
+        "+# another comment",
+    ])
+    s = extract(_commit_with_patch("p1", patch))
+    assert s.comment_density > 0
+
+def test_type_annotation_ratio_python():
+    patch = "\n".join([
+        "+def foo(x: int) -> str:",
+        "+    return str(x)",
+        "+def bar():",
+        "+    pass",
+    ])
+    s = extract(_commit_with_patch("p2", patch))
+    assert s.type_annotation_ratio == 0.5   # 1 of 2 functions typed
+
+def test_docstring_density_python():
+    patch = "\n".join([
+        '+def foo():',
+        '+    """Do the thing."""',
+        '+    return 1',
+        '+def bar():',
+        '+    return 2',
+    ])
+    s = extract(_commit_with_patch("p3", patch))
+    assert s.docstring_density == 0.5       # 1 of 2 functions has docstring
+
+def test_try_density_python():
+    patch = "\n".join([
+        "+try:",
+        "+    x = int(s)",
+        "+except ValueError:",
+        "+    x = 0",
+    ])
+    s = extract(_commit_with_patch("p4", patch))
+    assert s.try_density > 0
+
+def test_blank_line_ratio():
+    patch = "\n".join([
+        "+def foo():",
+        "+    return 1",
+        "+",
+        "+",
+    ])
+    s = extract(_commit_with_patch("p5", patch))
+    assert s.blank_line_ratio == 0.5        # 2 blank out of 4 added lines
+
+def test_no_patch_signals_are_zero():
+    c = _commit("p6", "alice", 0, PLAIN_MSG)  # no patch data
+    s = extract(c)
+    assert s.comment_density == 0.0
+    assert s.docstring_density == 0.0
+
+
 # ── Pairing ───────────────────────────────────────────────────────────────────
 
 def test_pairing_basic():

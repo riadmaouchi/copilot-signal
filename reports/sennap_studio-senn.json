@@ -122,7 +122,67 @@
       "significant_at_05": false,
       "effect_size": null,
       "direction": "no_difference"
+    },
+    {
+      "signal": "comment_density",
+      "n_pairs": 7,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -0.333,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "docstring_density",
+      "n_pairs": 7,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "type_annotation_ratio",
+      "n_pairs": 7,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "try_density",
+      "n_pairs": 7,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "blank_line_ratio",
+      "n_pairs": 7,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -0.333,
+      "direction": "no_difference"
     }
   ],
-  "interpretation": "sennap/studio-senn: 1/10 signals differ significantly between Copilot-tagged and control commits (7 pairs, 1 authors): message_length (lower_in_copilot, p=0.031). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
+  "interpretation": "sennap/studio-senn: 1/15 signals differ significantly between Copilot-tagged and control commits (7 pairs, 1 authors): message_length (lower_in_copilot, p=0.031). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
 }

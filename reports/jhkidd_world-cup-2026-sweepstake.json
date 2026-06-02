@@ -122,7 +122,67 @@
       "significant_at_05": false,
       "effect_size": null,
       "direction": "no_difference"
+    },
+    {
+      "signal": "comment_density",
+      "n_pairs": 12,
+      "case_median": 0.093,
+      "control_median": 0.0,
+      "delta_median": 0.093,
+      "delta_pct": 9303030303.0,
+      "p_value": 0.0039,
+      "significant_at_05": true,
+      "effect_size": 1.0,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "docstring_density",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "type_annotation_ratio",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "try_density",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.25,
+      "significant_at_05": false,
+      "effect_size": 1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "blank_line_ratio",
+      "n_pairs": 12,
+      "case_median": 0.1121,
+      "control_median": 0.0,
+      "delta_median": 0.1121,
+      "delta_pct": 11209150326.8,
+      "p_value": 0.0078,
+      "significant_at_05": true,
+      "effect_size": 1.0,
+      "direction": "higher_in_copilot"
     }
   ],
-  "interpretation": "jhkidd/world-cup-2026-sweepstake: 3/10 signals differ significantly between Copilot-tagged and control commits (12 pairs, 1 authors): net_lines (lower_in_copilot, p=0.001), total_churn (lower_in_copilot, p=0.001), cross_module_ratio (higher_in_copilot, p=0.002). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
+  "interpretation": "jhkidd/world-cup-2026-sweepstake: 5/15 signals differ significantly between Copilot-tagged and control commits (12 pairs, 1 authors): net_lines (lower_in_copilot, p=0.001), total_churn (lower_in_copilot, p=0.001), cross_module_ratio (higher_in_copilot, p=0.002), comment_density (higher_in_copilot, p=0.004), blank_line_ratio (higher_in_copilot, p=0.008). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
 }

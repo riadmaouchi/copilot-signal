@@ -85,6 +85,14 @@ class CommitSignals(BaseModel):
     # Large commit: |net_lines| > 200 — one boolean, avoids ratio noise at commit level
     is_large: bool = False
 
+    # Level B — patch content (extracted from added lines in the diff)
+    # Only populated when patch data is available; 0.0 otherwise.
+    comment_density: float = 0.0        # comment lines / added code lines
+    docstring_density: float = 0.0      # functions with docstring / functions added
+    type_annotation_ratio: float = 0.0  # typed defs / defs added (Python)
+    try_density: float = 0.0            # try blocks per 100 added lines
+    blank_line_ratio: float = 0.0       # blank added lines / total added lines
+
 
 class CommitPair(BaseModel):
     """

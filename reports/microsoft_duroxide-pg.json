@@ -122,6 +122,66 @@
       "significant_at_05": false,
       "effect_size": 1.0,
       "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "comment_density",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.1954,
+      "delta_median": -0.1954,
+      "delta_pct": -100.0,
+      "p_value": 0.0781,
+      "significant_at_05": false,
+      "effect_size": -0.786,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "docstring_density",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "type_annotation_ratio",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "try_density",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 0.067,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "blank_line_ratio",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.8438,
+      "significant_at_05": false,
+      "effect_size": -0.714,
+      "direction": "no_difference"
     }
   ],
   "interpretation": "microsoft/duroxide-pg: No significant differences between Copilot-tagged and control commits (9 pairs, 3 authors). H₀ (tagged and untagged commits are drawn from the same distribution) cannot be rejected."

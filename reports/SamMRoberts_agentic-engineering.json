@@ -122,6 +122,66 @@
       "significant_at_05": false,
       "effect_size": 0.429,
       "direction": "no_difference"
+    },
+    {
+      "signal": "comment_density",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.6002,
+      "significant_at_05": false,
+      "effect_size": -0.238,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "docstring_density",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.3173,
+      "significant_at_05": false,
+      "effect_size": 1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "type_annotation_ratio",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "try_density",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.715,
+      "significant_at_05": false,
+      "effect_size": 0.8,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "blank_line_ratio",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.499,
+      "significant_at_05": false,
+      "effect_size": 0.286,
+      "direction": "no_difference"
     }
   ],
   "interpretation": "SamMRoberts/agentic-engineering: No significant differences between Copilot-tagged and control commits (16 pairs, 2 authors). H₀ (tagged and untagged commits are drawn from the same distribution) cannot be rejected."

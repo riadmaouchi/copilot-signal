@@ -21,6 +21,7 @@ from copilotsig.models import CommitPair, SignalComparison, StudyResult
 
 # Signals to test, in order of theoretical interest
 _SIGNALS = [
+    # Level A — process structure
     "files_changed",
     "net_lines",
     "total_churn",
@@ -31,6 +32,12 @@ _SIGNALS = [
     "test_file_ratio",
     "message_length",
     "has_conventional_commit",
+    # Level B — patch content
+    "comment_density",
+    "docstring_density",
+    "type_annotation_ratio",
+    "try_density",
+    "blank_line_ratio",
 ]
 
 

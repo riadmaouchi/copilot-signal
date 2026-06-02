@@ -122,6 +122,66 @@
       "significant_at_05": false,
       "effect_size": null,
       "direction": "no_difference"
+    },
+    {
+      "signal": "comment_density",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "docstring_density",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "type_annotation_ratio",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "try_density",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "blank_line_ratio",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0164,
+      "delta_median": -0.0164,
+      "delta_pct": -100.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
     }
   ],
   "interpretation": "battedeefly/animated: No significant differences between Copilot-tagged and control commits (3 pairs, 1 authors). H₀ (tagged and untagged commits are drawn from the same distribution) cannot be rejected."

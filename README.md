@@ -43,14 +43,17 @@ Within-author, within-repo, ±14-day pairing controls for developer style, proje
 
 *Forest plot: Δ% between Copilot-tagged commits and matched controls. Vertical zero line = null hypothesis. Green bars = p < 0.05.*
 
-**One signal stands out: `has_conventional_commit` is consistently higher in Copilot-tagged commits** (michaeljolley/io: p < 0.001, r = 1.0). This is causal by construction — Copilot's "generate commit message" feature produces `feat:`, `fix:`, `chore:` prefixes. It is a detector of the tool, not of the code.
+**15 signals tested** across two levels. Key findings from 147 real pairs:
 
-All other signals are inconsistent across repos:
-- **Size signals** (files_changed, net_lines): lower in Copilot commits for NLWeb and world-cup-sweepstake, higher for JIRA-SCRIPT. No pooled direction.
-- **Structural signals** (cross_module_ratio, touches_tests): mixed, repo-specific.
-- **Most repos** (7/11): zero signals significant at p < 0.05.
+**Level A (process structure) — largely null.** Size signals are inconsistent across repos: Copilot commits are smaller in NLWeb, larger in JIRA-SCRIPT, indistinguishable in michaeljolley/io. No pooled direction. `has_conventional_commit` is the one reliable signal — but it detects Copilot's commit-message generator, not the code.
 
-This is consistent with a **selection-bias null result**: the Copilot tag correlates with the *type of task* the developer uses Copilot for, not with measurable structural differences in code output.
+**Level B (patch content) — two consistent signals emerge:**
+- **`comment_density`** is higher in Copilot commits (jhkidd: p=0.004, r=1.0; michaeljolley/io: p=0.024, r=0.31). Copilot adds more inline comments within the code it writes.
+- **`blank_line_ratio`** is higher in Copilot commits (jhkidd: p=0.008, r=1.0; JIRA-SCRIPT: p=0.008, r=1.0). Copilot structures code with more whitespace.
+
+Exception: NLWeb shows the *opposite* (both signals lower). In that repo, Copilot is used for small single-file fixes (median 1 file vs 6 for controls) — a different task type entirely.
+
+**Interpretation:** When controlling for developer style and project phase (paired design), Copilot-tagged commits show modestly more comments and blank lines in the changed code. This is plausible — Copilot's generation tends toward readable, well-spaced output. But the effect is fragile across repos, consistent with selection bias dominating: *which tasks* a developer uses Copilot for varies more than *how* Copilot writes.
 
 ---
 
@@ -84,10 +87,12 @@ Repo corpus  (configured in configs/study.yaml)
 Per-repo: fetch all commits  (Copilot-tagged + untagged)
       │
       ▼
-CommitSignals extraction  (Level-A process signals)
-      │  files_changed · net_lines · total_churn
-      │  cross_module_ratio · is_refactor · touches_tests
-      │  message_length · has_conventional_commit
+CommitSignals extraction
+      │  Level A — process: files_changed · net_lines · total_churn
+      │            cross_module_ratio · is_refactor · touches_tests
+      │            message_length · has_conventional_commit
+      │  Level B — patch:   comment_density · docstring_density
+      │            type_annotation_ratio · try_density · blank_line_ratio
       │
       ▼
 Pair matching  (author, repo, ≤14 days, one-to-one)

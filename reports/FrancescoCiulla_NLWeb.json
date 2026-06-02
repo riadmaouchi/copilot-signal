@@ -122,7 +122,67 @@
       "significant_at_05": false,
       "effect_size": null,
       "direction": "no_difference"
+    },
+    {
+      "signal": "comment_density",
+      "n_pairs": 19,
+      "case_median": 0.0,
+      "control_median": 0.0219,
+      "delta_median": -0.0219,
+      "delta_pct": -100.0,
+      "p_value": 0.388,
+      "significant_at_05": false,
+      "effect_size": -0.487,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "docstring_density",
+      "n_pairs": 19,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.0273,
+      "significant_at_05": true,
+      "effect_size": -1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "type_annotation_ratio",
+      "n_pairs": 19,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.0273,
+      "significant_at_05": true,
+      "effect_size": -1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "try_density",
+      "n_pairs": 19,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.0117,
+      "significant_at_05": true,
+      "effect_size": -1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "blank_line_ratio",
+      "n_pairs": 19,
+      "case_median": 0.0,
+      "control_median": 0.1104,
+      "delta_median": -0.1104,
+      "delta_pct": -100.0,
+      "p_value": 0.0033,
+      "significant_at_05": true,
+      "effect_size": -1.0,
+      "direction": "lower_in_copilot"
     }
   ],
-  "interpretation": "FrancescoCiulla/NLWeb: 6/10 signals differ significantly between Copilot-tagged and control commits (19 pairs, 1 authors): files_changed (lower_in_copilot, p=0.003), net_lines (lower_in_copilot, p=0.010), total_churn (lower_in_copilot, p=0.001), cross_module_ratio (no_difference, p=0.008), is_large (no_difference, p=0.014), message_length (lower_in_copilot, p=0.013). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
+  "interpretation": "FrancescoCiulla/NLWeb: 10/15 signals differ significantly between Copilot-tagged and control commits (19 pairs, 1 authors): files_changed (lower_in_copilot, p=0.003), net_lines (lower_in_copilot, p=0.010), total_churn (lower_in_copilot, p=0.001), cross_module_ratio (no_difference, p=0.008), is_large (no_difference, p=0.014), message_length (lower_in_copilot, p=0.013), docstring_density (no_difference, p=0.027), type_annotation_ratio (no_difference, p=0.027), try_density (no_difference, p=0.012), blank_line_ratio (lower_in_copilot, p=0.003). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
 }

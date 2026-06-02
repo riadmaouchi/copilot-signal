@@ -48,6 +48,7 @@ REPORTS_DIR = Path("reports")
 IMG_DIR     = Path("docs/img")
 
 SIGNAL_LABELS = {
+    # Level A — process
     "files_changed":          "Files changed",
     "net_lines":              "Net lines",
     "total_churn":            "Total churn (add+del)",
@@ -58,6 +59,12 @@ SIGNAL_LABELS = {
     "test_file_ratio":        "Test-file ratio",
     "message_length":         "Commit message length",
     "has_conventional_commit":"Conventional commit format",
+    # Level B — patch content
+    "comment_density":        "Comment density (patch)",
+    "docstring_density":      "Docstring coverage (patch)",
+    "type_annotation_ratio":  "Type annotation ratio (patch)",
+    "try_density":            "Error-handling density (patch)",
+    "blank_line_ratio":       "Blank-line ratio (patch)",
 }
 
 
