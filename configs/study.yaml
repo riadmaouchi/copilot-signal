@@ -1,0 +1,71 @@
+# Repos known or likely to have Copilot-tagged commits.
+# Use `python run_study.py --discover` to find more.
+#
+# Priority tiers:
+#   tier: 1 — high expected tag volume (large teams, Microsoft ecosystem)
+#   tier: 2 — moderate expected volume (active OSS, multiple contributors)
+#   tier: 3 — experimental / low expected volume
+
+repos:
+
+  # ── Tier 1 — high expected Copilot-tag volume ─────────────────────────────
+  - repo: microsoft/vscode
+    tier: 1
+    notes: >
+      Largest GitHub repo with documented Copilot use by the team that built it.
+      High commit volume, many contributors — good statistical power.
+
+  - repo: microsoft/TypeScript
+    tier: 1
+    notes: >
+      Large team, Microsoft ecosystem. Expected high Copilot adoption.
+
+  - repo: microsoft/playwright
+    tier: 1
+    notes: >
+      Active team, mixed commit sizes. Good for testing file-level signals.
+
+  # ── Tier 2 — moderate expected volume ─────────────────────────────────────
+  - repo: denoland/deno
+    tier: 2
+    notes: >
+      Ryan Dahl's team. Active, multi-contributor, TypeScript + Rust.
+      Cross-language signal test.
+
+  - repo: vercel/next.js
+    tier: 2
+    notes: >
+      Large contributor base. Vercel has documented Copilot use in their workflow.
+
+  - repo: vitejs/vite
+    tier: 2
+    notes: >
+      Active OSS project with diverse contributors. Good baseline for comparison.
+
+  - repo: sveltejs/svelte
+    tier: 2
+    notes: >
+      Already in dev-fingerprint corpus. Allows cross-study comparison on Rich Harris.
+
+  - repo: expressjs/express
+    tier: 2
+    notes: >
+      Large contributor base, long history. Good for historical baseline.
+
+  # ── Tier 3 — experimental / lower volume ──────────────────────────────────
+  - repo: simonw/datasette
+    tier: 3
+    notes: >
+      Simon Willison — documented heavy AI user. Interesting to see if he uses the tag.
+      Low expected tag volume (Willison may not enable the auto-tagging feature).
+
+  - repo: anthropics/claude-code
+    tier: 3
+    notes: >
+      High likelihood of Copilot/AI-tagged commits from Anthropic engineers.
+
+# Study parameters
+study:
+  max_commits_per_repo: 2000
+  max_gap_days: 14
+  min_pairs_to_include: 5

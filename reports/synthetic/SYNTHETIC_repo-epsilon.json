@@ -1,0 +1,128 @@
+{
+  "scope": "SYNTHETIC/repo-epsilon",
+  "n_pairs": 18,
+  "n_authors": 3,
+  "signals": [
+    {
+      "signal": "message_length",
+      "n_pairs": 18,
+      "case_median": 73.956,
+      "control_median": 45.751,
+      "delta_median": 28.205,
+      "delta_pct": 61.6,
+      "p_value": 0.0133,
+      "significant_at_05": true,
+      "effect_size": 0.42,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 18,
+      "case_median": 0.768,
+      "control_median": 0.572,
+      "delta_median": 0.196,
+      "delta_pct": 34.3,
+      "p_value": 0.0367,
+      "significant_at_05": true,
+      "effect_size": 0.39,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "files_changed",
+      "n_pairs": 18,
+      "case_median": 2.794,
+      "control_median": 2.825,
+      "delta_median": -0.031,
+      "delta_pct": -1.1,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 0.045,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 18,
+      "case_median": 53.02,
+      "control_median": 39.661,
+      "delta_median": 13.359,
+      "delta_pct": 33.7,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 0.033,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 18,
+      "case_median": 81.865,
+      "control_median": 95.856,
+      "delta_median": -13.991,
+      "delta_pct": -14.6,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -0.016,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 18,
+      "case_median": 0.254,
+      "control_median": 0.193,
+      "delta_median": 0.062,
+      "delta_pct": 32.2,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 0.004,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 18,
+      "case_median": 0.21,
+      "control_median": 0.124,
+      "delta_median": 0.086,
+      "delta_pct": 69.0,
+      "p_value": 0.9333,
+      "significant_at_05": false,
+      "effect_size": 0.051,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 18,
+      "case_median": 0.152,
+      "control_median": 0.09,
+      "delta_median": 0.062,
+      "delta_pct": 68.8,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -0.021,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 18,
+      "case_median": 0.321,
+      "control_median": 0.334,
+      "delta_median": -0.013,
+      "delta_pct": -3.8,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -0.042,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 18,
+      "case_median": 0.107,
+      "control_median": 0.143,
+      "delta_median": -0.036,
+      "delta_pct": -24.9,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 0.035,
+      "direction": "lower_in_copilot"
+    }
+  ],
+  "interpretation": "SYNTHETIC/repo-epsilon [SYNTHETIC]: 2/10 signals significant. message_length and has_conventional_commit differ — consistent with Copilot generating verbose conventional commit messages. File-level signals: no difference."
+}

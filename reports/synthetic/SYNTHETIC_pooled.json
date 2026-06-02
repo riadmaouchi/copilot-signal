@@ -1,0 +1,128 @@
+{
+  "scope": "SYNTHETIC/pooled",
+  "n_pairs": 221,
+  "n_authors": 17,
+  "signals": [
+    {
+      "signal": "message_length",
+      "n_pairs": 221,
+      "case_median": 72.25,
+      "control_median": 48.346,
+      "delta_median": 23.904,
+      "delta_pct": 49.4,
+      "p_value": 0.0038,
+      "significant_at_05": true,
+      "effect_size": 0.316,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 221,
+      "case_median": 0.823,
+      "control_median": 0.554,
+      "delta_median": 0.269,
+      "delta_pct": 48.5,
+      "p_value": 0.0105,
+      "significant_at_05": true,
+      "effect_size": 0.244,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "files_changed",
+      "n_pairs": 221,
+      "case_median": 3.333,
+      "control_median": 3.059,
+      "delta_median": 0.274,
+      "delta_pct": 9.0,
+      "p_value": 0.2901,
+      "significant_at_05": false,
+      "effect_size": -0.02,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 221,
+      "case_median": 60.626,
+      "control_median": 51.101,
+      "delta_median": 9.525,
+      "delta_pct": 18.6,
+      "p_value": 0.3425,
+      "significant_at_05": false,
+      "effect_size": 0.069,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 221,
+      "case_median": 100.793,
+      "control_median": 85.897,
+      "delta_median": 14.896,
+      "delta_pct": 17.3,
+      "p_value": 0.3282,
+      "significant_at_05": false,
+      "effect_size": 0.078,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 221,
+      "case_median": 0.224,
+      "control_median": 0.217,
+      "delta_median": 0.006,
+      "delta_pct": 2.9,
+      "p_value": 0.3995,
+      "significant_at_05": false,
+      "effect_size": 0.115,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 221,
+      "case_median": 0.176,
+      "control_median": 0.159,
+      "delta_median": 0.018,
+      "delta_pct": 11.1,
+      "p_value": 0.2664,
+      "significant_at_05": false,
+      "effect_size": -0.004,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 221,
+      "case_median": 0.112,
+      "control_median": 0.129,
+      "delta_median": -0.017,
+      "delta_pct": -13.5,
+      "p_value": 0.3377,
+      "significant_at_05": false,
+      "effect_size": -0.013,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 221,
+      "case_median": 0.315,
+      "control_median": 0.314,
+      "delta_median": 0.0,
+      "delta_pct": 0.1,
+      "p_value": 0.3758,
+      "significant_at_05": false,
+      "effect_size": 0.021,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 221,
+      "case_median": 0.155,
+      "control_median": 0.127,
+      "delta_median": 0.027,
+      "delta_pct": 21.3,
+      "p_value": 0.3853,
+      "significant_at_05": false,
+      "effect_size": 0.156,
+      "direction": "higher_in_copilot"
+    }
+  ],
+  "interpretation": "SYNTHETIC/pooled: 2/10 signals differ across 221 pairs. This is synthetic data for visualization only."
+}
