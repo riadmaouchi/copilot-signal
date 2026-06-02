@@ -1,0 +1,128 @@
+{
+  "scope": "jhkidd/world-cup-2026-sweepstake",
+  "n_pairs": 12,
+  "n_authors": 1,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_pairs": 12,
+      "case_median": 3.5,
+      "control_median": 2.0,
+      "delta_median": 1.5,
+      "delta_pct": 75.0,
+      "p_value": 0.1133,
+      "significant_at_05": false,
+      "effect_size": 0.422,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 12,
+      "case_median": 356.0,
+      "control_median": 31533.0,
+      "delta_median": -31177.0,
+      "delta_pct": -98.9,
+      "p_value": 0.001,
+      "significant_at_05": true,
+      "effect_size": -0.744,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 12,
+      "case_median": 376.5,
+      "control_median": 31629.0,
+      "delta_median": -31252.5,
+      "delta_pct": -98.8,
+      "p_value": 0.0005,
+      "significant_at_05": true,
+      "effect_size": -1.0,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 12,
+      "case_median": 0.3542,
+      "control_median": 0.0,
+      "delta_median": 0.3542,
+      "delta_pct": 35416666666.7,
+      "p_value": 0.002,
+      "significant_at_05": true,
+      "effect_size": 1.0,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 12,
+      "case_median": 1.0,
+      "control_median": 1.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.375,
+      "significant_at_05": false,
+      "effect_size": -0.333,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "message_length",
+      "n_pairs": 12,
+      "case_median": 59.0,
+      "control_median": 76.0,
+      "delta_median": -17.0,
+      "delta_pct": -22.4,
+      "p_value": 0.3394,
+      "significant_at_05": false,
+      "effect_size": -0.359,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    }
+  ],
+  "interpretation": "jhkidd/world-cup-2026-sweepstake: 3/10 signals differ significantly between Copilot-tagged and control commits (12 pairs, 1 authors): net_lines (lower_in_copilot, p=0.001), total_churn (lower_in_copilot, p=0.001), cross_module_ratio (higher_in_copilot, p=0.002). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
+}

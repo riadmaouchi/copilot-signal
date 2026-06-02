@@ -1,0 +1,128 @@
+{
+  "scope": "Ronrock/Opaline",
+  "n_pairs": 1,
+  "n_authors": 1,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_pairs": 1,
+      "case_median": 18.0,
+      "control_median": 25.0,
+      "delta_median": -7.0,
+      "delta_pct": -28.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 1,
+      "case_median": 0.0,
+      "control_median": 16.0,
+      "delta_median": -16.0,
+      "delta_pct": -100.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 1,
+      "case_median": 2.0,
+      "control_median": 56.0,
+      "delta_median": -54.0,
+      "delta_pct": -96.4,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 1,
+      "case_median": 0.0588,
+      "control_median": 0.0417,
+      "delta_median": 0.0172,
+      "delta_pct": 41.2,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 1,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 1,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 1,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 1,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "message_length",
+      "n_pairs": 1,
+      "case_median": 31.0,
+      "control_median": 55.0,
+      "delta_median": -24.0,
+      "delta_pct": -43.6,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 1,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    }
+  ],
+  "interpretation": "Ronrock/Opaline: No significant differences between Copilot-tagged and control commits (1 pairs, 1 authors). H₀ (tagged and untagged commits are drawn from the same distribution) cannot be rejected."
+}

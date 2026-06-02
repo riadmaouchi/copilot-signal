@@ -1,0 +1,128 @@
+{
+  "scope": "SamMRoberts/agentic-engineering",
+  "n_pairs": 16,
+  "n_authors": 2,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_pairs": 16,
+      "case_median": 8.5,
+      "control_median": 10.0,
+      "delta_median": -1.5,
+      "delta_pct": -15.0,
+      "p_value": 0.3453,
+      "significant_at_05": false,
+      "effect_size": 0.165,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 16,
+      "case_median": 92.0,
+      "control_median": 88.0,
+      "delta_median": 4.0,
+      "delta_pct": 4.5,
+      "p_value": 0.5509,
+      "significant_at_05": false,
+      "effect_size": 0.429,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 16,
+      "case_median": 141.0,
+      "control_median": 189.0,
+      "delta_median": -48.0,
+      "delta_pct": -25.4,
+      "p_value": 0.3003,
+      "significant_at_05": false,
+      "effect_size": 0.371,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.2489,
+      "significant_at_05": false,
+      "effect_size": -0.429,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.4142,
+      "significant_at_05": false,
+      "effect_size": -0.333,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.3173,
+      "significant_at_05": false,
+      "effect_size": 1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.3173,
+      "significant_at_05": false,
+      "effect_size": 0.6,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 16,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.1159,
+      "significant_at_05": false,
+      "effect_size": 0.524,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "message_length",
+      "n_pairs": 16,
+      "case_median": 65.0,
+      "control_median": 65.5,
+      "delta_median": -0.5,
+      "delta_pct": -0.8,
+      "p_value": 0.3632,
+      "significant_at_05": false,
+      "effect_size": 0.017,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 16,
+      "case_median": 1.0,
+      "control_median": 1.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.4142,
+      "significant_at_05": false,
+      "effect_size": 0.429,
+      "direction": "no_difference"
+    }
+  ],
+  "interpretation": "SamMRoberts/agentic-engineering: No significant differences between Copilot-tagged and control commits (16 pairs, 2 authors). H₀ (tagged and untagged commits are drawn from the same distribution) cannot be rejected."
+}

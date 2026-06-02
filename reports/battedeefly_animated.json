@@ -1,0 +1,128 @@
+{
+  "scope": "battedeefly/animated",
+  "n_pairs": 3,
+  "n_authors": 1,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_pairs": 3,
+      "case_median": 1.0,
+      "control_median": 3.0,
+      "delta_median": -2.0,
+      "delta_pct": -66.7,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 13.0,
+      "delta_median": -13.0,
+      "delta_pct": -100.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 3,
+      "case_median": 3.0,
+      "control_median": 53.0,
+      "delta_median": -50.0,
+      "delta_pct": -94.3,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 3,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "message_length",
+      "n_pairs": 3,
+      "case_median": 35.0,
+      "control_median": 64.0,
+      "delta_median": -29.0,
+      "delta_pct": -45.3,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 3,
+      "case_median": 1.0,
+      "control_median": 0.0,
+      "delta_median": 1.0,
+      "delta_pct": 100000000000.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    }
+  ],
+  "interpretation": "battedeefly/animated: No significant differences between Copilot-tagged and control commits (3 pairs, 1 authors). H₀ (tagged and untagged commits are drawn from the same distribution) cannot be rejected."
+}

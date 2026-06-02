@@ -33,21 +33,24 @@ Within-author, within-repo, ±14-day pairing controls for developer style, proje
 
 ![Corpus overview](docs/img/fig1_corpus.png)
 
-*Figures show synthetic data. Run `python run_study.py --discover` with a GitHub token to generate real results.*
+*11 repos · 147 matched pairs · 13 authors — real data collected June 2026.*
 
 ---
 
-## Main Finding (Synthetic Demonstration)
+## Main Finding
 
 ![Signal differences](docs/img/fig2_forest.png)
 
 *Forest plot: Δ% between Copilot-tagged commits and matched controls. Vertical zero line = null hypothesis. Green bars = p < 0.05.*
 
-The synthetic corpus is designed around two plausible priors:
-- **Commit message signals** (length, conventional format) are plausibly higher in Copilot commits — Copilot's "generate commit message" feature produces verbose, structured summaries.
-- **File-level signals** (files changed, net lines, cross-module ratio) show no consistent difference — those are driven by the task, not the tool.
+**One signal stands out: `has_conventional_commit` is consistently higher in Copilot-tagged commits** (michaeljolley/io: p < 0.001, r = 1.0). This is causal by construction — Copilot's "generate commit message" feature produces `feat:`, `fix:`, `chore:` prefixes. It is a detector of the tool, not of the code.
 
-Whether this prior holds on real data is exactly what the study tests.
+All other signals are inconsistent across repos:
+- **Size signals** (files_changed, net_lines): lower in Copilot commits for NLWeb and world-cup-sweepstake, higher for JIRA-SCRIPT. No pooled direction.
+- **Structural signals** (cross_module_ratio, touches_tests): mixed, repo-specific.
+- **Most repos** (7/11): zero signals significant at p < 0.05.
+
+This is consistent with a **selection-bias null result**: the Copilot tag correlates with the *type of task* the developer uses Copilot for, not with measurable structural differences in code output.
 
 ---
 

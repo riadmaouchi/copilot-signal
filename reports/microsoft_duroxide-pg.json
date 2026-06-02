@@ -1,0 +1,128 @@
+{
+  "scope": "microsoft/duroxide-pg",
+  "n_pairs": 9,
+  "n_authors": 3,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_pairs": 9,
+      "case_median": 4.0,
+      "control_median": 5.0,
+      "delta_median": -1.0,
+      "delta_pct": -20.0,
+      "p_value": 0.4062,
+      "significant_at_05": false,
+      "effect_size": -0.357,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 9,
+      "case_median": 113.0,
+      "control_median": 14.0,
+      "delta_median": 99.0,
+      "delta_pct": 707.1,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -0.2,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 9,
+      "case_median": 117.0,
+      "control_median": 59.0,
+      "delta_median": 58.0,
+      "delta_pct": 98.3,
+      "p_value": 0.4258,
+      "significant_at_05": false,
+      "effect_size": -0.378,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 9,
+      "case_median": 0.25,
+      "control_median": 0.4167,
+      "delta_median": -0.1667,
+      "delta_pct": -40.0,
+      "p_value": 0.2188,
+      "significant_at_05": false,
+      "effect_size": -0.81,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": -0.667,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 0.333,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 9,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.125,
+      "significant_at_05": false,
+      "effect_size": 0.733,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "message_length",
+      "n_pairs": 9,
+      "case_median": 46.0,
+      "control_median": 58.0,
+      "delta_median": -12.0,
+      "delta_pct": -20.7,
+      "p_value": 0.2031,
+      "significant_at_05": false,
+      "effect_size": -0.467,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 9,
+      "case_median": 1.0,
+      "control_median": 0.0,
+      "delta_median": 1.0,
+      "delta_pct": 100000000000.0,
+      "p_value": 0.125,
+      "significant_at_05": false,
+      "effect_size": 1.0,
+      "direction": "higher_in_copilot"
+    }
+  ],
+  "interpretation": "microsoft/duroxide-pg: No significant differences between Copilot-tagged and control commits (9 pairs, 3 authors). H₀ (tagged and untagged commits are drawn from the same distribution) cannot be rejected."
+}

@@ -21,8 +21,18 @@ _console = Console(stderr=True)
 # The exact trailer GitHub Copilot adds when it generates a commit message
 # or when its VS Code extension is configured to tag commits.
 _COPILOT_PATTERNS = [
+    # VS Code Copilot with commit message generation enabled
     re.compile(r"co-authored-by:.*github copilot", re.IGNORECASE),
     re.compile(r"co-authored-by:.*copilot@github\.com", re.IGNORECASE),
+    # GitHub Copilot in PRs / web editor (most common in practice)
+    # Format: Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+    re.compile(r"co-authored-by:.*copilot@users\.noreply\.github\.com", re.IGNORECASE),
+]
+
+# Search queries that find both tag formats on GitHub
+COPILOT_SEARCH_QUERIES = [
+    "co-authored-by:copilot@github.com",
+    "co-authored-by:Copilot@users.noreply.github.com",
 ]
 
 _EXT_TO_LANG: dict[str, Language] = {
@@ -100,47 +110,48 @@ class GitHubClient:
 
     async def search_copilot_repos(
         self,
-        min_stars: int = 10,
         max_results: int = 100,
     ) -> list[dict[str, Any]]:
         """
-        Find repos that have a significant number of Copilot-tagged commits.
+        Find repos with Copilot-tagged commits.
 
-        Strategy: search commits containing the Copilot co-authorship trailer,
-        aggregate by repo, return the top repos by hit count.
+        Searches both known tag formats:
+        - copilot@github.com  (VS Code commit message generation)
+        - Copilot@users.noreply.github.com  (GitHub web UI / Copilot in PRs)
         """
         repos: dict[str, int] = {}
-        page = 1
 
-        while len(repos) < max_results:
-            try:
-                data = await self._get(
-                    "/search/commits",
-                    {
-                        "q": "co-authored-by:copilot@github.com",
-                        "per_page": 100,
-                        "page": page,
-                        "sort": "committer-date",
-                        "order": "desc",
-                    },
-                )
-            except httpx.HTTPStatusError as e:
-                if e.response.status_code == 422:
+        for query in COPILOT_SEARCH_QUERIES:
+            page = 1
+            while True:
+                try:
+                    data = await self._get(
+                        "/search/commits",
+                        {
+                            "q": query,
+                            "per_page": 100,
+                            "page": page,
+                            "sort": "committer-date",
+                            "order": "desc",
+                        },
+                    )
+                except httpx.HTTPStatusError as e:
+                    if e.response.status_code in (422, 403):
+                        break
+                    raise
+
+                items = data.get("items", [])
+                if not items:
                     break
-                raise
 
-            items = data.get("items", [])
-            if not items:
-                break
+                for item in items:
+                    repo = item.get("repository", {}).get("full_name", "")
+                    if repo:
+                        repos[repo] = repos.get(repo, 0) + 1
 
-            for item in items:
-                repo = item.get("repository", {}).get("full_name", "")
-                if repo:
-                    repos[repo] = repos.get(repo, 0) + 1
-
-            if len(items) < 100:
-                break
-            page += 1
+                if len(items) < 100 or len(repos) >= max_results:
+                    break
+                page += 1
 
         return sorted(
             [{"repo": r, "copilot_commits": c} for r, c in repos.items()],

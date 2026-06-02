@@ -1,0 +1,128 @@
+{
+  "scope": "odlhassan/JIRA-SCRIPT",
+  "n_pairs": 12,
+  "n_authors": 1,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_pairs": 12,
+      "case_median": 25.5,
+      "control_median": 2.0,
+      "delta_median": 23.5,
+      "delta_pct": 1175.0,
+      "p_value": 0.0293,
+      "significant_at_05": true,
+      "effect_size": 0.491,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 12,
+      "case_median": 610.0,
+      "control_median": 46.5,
+      "delta_median": 563.5,
+      "delta_pct": 1211.8,
+      "p_value": 0.8501,
+      "significant_at_05": false,
+      "effect_size": 0.256,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 12,
+      "case_median": 717.0,
+      "control_median": 212.0,
+      "delta_median": 505.0,
+      "delta_pct": 238.2,
+      "p_value": 0.9697,
+      "significant_at_05": false,
+      "effect_size": 0.051,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 12,
+      "case_median": 0.0475,
+      "control_median": 0.0,
+      "delta_median": 0.0475,
+      "delta_pct": 4750000000.0,
+      "p_value": 0.7344,
+      "significant_at_05": false,
+      "effect_size": 0.156,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 12,
+      "case_median": 1.0,
+      "control_median": 0.5,
+      "delta_median": 0.5,
+      "delta_pct": 100.0,
+      "p_value": 0.4531,
+      "significant_at_05": false,
+      "effect_size": 0.214,
+      "direction": "higher_in_copilot"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": null,
+      "significant_at_05": false,
+      "effect_size": null,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 1.0,
+      "significant_at_05": false,
+      "effect_size": 0.333,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 12,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.6875,
+      "significant_at_05": false,
+      "effect_size": -0.238,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "message_length",
+      "n_pairs": 12,
+      "case_median": 42.5,
+      "control_median": 67.0,
+      "delta_median": -24.5,
+      "delta_pct": -36.6,
+      "p_value": 0.2407,
+      "significant_at_05": false,
+      "effect_size": -0.282,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 12,
+      "case_median": 1.0,
+      "control_median": 1.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.375,
+      "significant_at_05": false,
+      "effect_size": 0.733,
+      "direction": "no_difference"
+    }
+  ],
+  "interpretation": "odlhassan/JIRA-SCRIPT: 1/10 signals differ significantly between Copilot-tagged and control commits (12 pairs, 1 authors): files_changed (higher_in_copilot, p=0.029). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
+}

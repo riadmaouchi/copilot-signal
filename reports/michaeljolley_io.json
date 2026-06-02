@@ -1,0 +1,128 @@
+{
+  "scope": "michaeljolley/io",
+  "n_pairs": 65,
+  "n_authors": 2,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_pairs": 65,
+      "case_median": 3.0,
+      "control_median": 3.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.7695,
+      "significant_at_05": false,
+      "effect_size": -0.048,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "net_lines",
+      "n_pairs": 65,
+      "case_median": 12.0,
+      "control_median": 56.0,
+      "delta_median": -44.0,
+      "delta_pct": -78.6,
+      "p_value": 0.1324,
+      "significant_at_05": false,
+      "effect_size": -0.278,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "total_churn",
+      "n_pairs": 65,
+      "case_median": 76.0,
+      "control_median": 77.0,
+      "delta_median": -1.0,
+      "delta_pct": -1.3,
+      "p_value": 0.261,
+      "significant_at_05": false,
+      "effect_size": -0.123,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_pairs": 65,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.8606,
+      "significant_at_05": false,
+      "effect_size": -0.118,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_large",
+      "n_pairs": 65,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.3359,
+      "significant_at_05": false,
+      "effect_size": -0.27,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "is_refactor",
+      "n_pairs": 65,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.2568,
+      "significant_at_05": false,
+      "effect_size": 0.429,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "touches_tests",
+      "n_pairs": 65,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.0455,
+      "significant_at_05": true,
+      "effect_size": -1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_pairs": 65,
+      "case_median": 0.0,
+      "control_median": 0.0,
+      "delta_median": 0.0,
+      "delta_pct": 0.0,
+      "p_value": 0.0422,
+      "significant_at_05": true,
+      "effect_size": -1.0,
+      "direction": "no_difference"
+    },
+    {
+      "signal": "message_length",
+      "n_pairs": 65,
+      "case_median": 62.0,
+      "control_median": 67.0,
+      "delta_median": -5.0,
+      "delta_pct": -7.5,
+      "p_value": 0.063,
+      "significant_at_05": false,
+      "effect_size": -0.399,
+      "direction": "lower_in_copilot"
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_pairs": 65,
+      "case_median": 1.0,
+      "control_median": 0.0,
+      "delta_median": 1.0,
+      "delta_pct": 100000000000.0,
+      "p_value": 0.0,
+      "significant_at_05": true,
+      "effect_size": 1.0,
+      "direction": "higher_in_copilot"
+    }
+  ],
+  "interpretation": "michaeljolley/io: 3/10 signals differ significantly between Copilot-tagged and control commits (65 pairs, 2 authors): touches_tests (no_difference, p=0.045), test_file_ratio (no_difference, p=0.042), has_conventional_commit (higher_in_copilot, p=0.000). Effect sizes are small-to-moderate; confounding by tag-selection bias cannot be excluded."
+}
