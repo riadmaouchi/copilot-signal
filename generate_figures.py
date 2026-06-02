@@ -44,6 +44,9 @@ CMAP_DIV = LinearSegmentedColormap.from_list(
     "rbc", ["#58a6ff", SURFACE, "#f0883e"], N=256
 )
 
+C_INSTR_STYLE = "#6e7681"   # grey — style-instructed repos
+C_INSTR_PROC  = "#79c0ff"   # blue — process-only instructions
+
 REPORTS_DIR = Path("reports")
 IMG_DIR     = Path("docs/img")
 
@@ -130,10 +133,12 @@ def _stars(p: float | None) -> str:
 def load_results(reports_dir: Path) -> list[dict]:
     results = []
     for f in sorted(reports_dir.glob("*.json")):
-        if f.stem.startswith("_") or f.stem == "summary":
+        if f.stem.startswith("_") or f.stem.startswith("group_") or f.stem == "summary":
             continue
         try:
-            results.append(json.loads(f.read_text()))
+            d = json.loads(f.read_text())
+            if "scope" in d:
+                results.append(d)
         except Exception:
             pass
     return results
@@ -160,11 +165,7 @@ def fig1_corpus(results: list[dict], synthetic: bool) -> None:
     pairs   = [r["n_pairs"] for r in rows]
     authors = [r["n_authors"] for r in rows]
 
-    # Bar color: grey for repos with style instructions (null result expected),
-    # orange for repos without (signal possible).
-    C_INSTR_STYLE = "#6e7681"   # grey — style-instructed, null
-    C_INSTR_PROC  = "#79c0ff"   # light blue — process/arch instructions only
-    C_NO_INSTR    = C_TAG       # orange — no instructions
+    C_NO_INSTR = C_TAG  # orange — no instructions
 
     def _bar_color(scope: str) -> str:
         if scope in LLM_STYLE_INSTRUCTIONS:
@@ -548,6 +549,141 @@ def fig4_pairs(reports_dir: Path, results: list[dict], synthetic: bool) -> None:
     _save(fig, "fig4_pairs.png", synthetic)
 
 
+# ── Fig 5: Group comparison — instruction type vs detectability ────────────────
+def fig5_groups(reports_dir: Path, synthetic: bool) -> None:
+    """
+    Heatmap: 3 groups (rows) × 15 signals (columns).
+    Color = weighted rank-biserial r (pooled within group).
+    Stars where Fisher combined p < 0.05.
+
+    Key comparison:
+      STYLE   — style-instructed repos → near-zero effects expected
+      PROCESS — process-only or arch instructions
+      NONE    — no instruction files → signal should survive
+    """
+    if synthetic:
+        return  # skip in synthetic mode
+
+    group_files = {
+        "STYLE\n(0/15 sig)":   reports_dir / "group_style.json",
+        "PROCESS\n(8/15 sig)": reports_dir / "group_process.json",
+        "NONE\n(4/15 sig)":    reports_dir / "group_none.json",
+    }
+
+    groups = {}
+    for label, path in group_files.items():
+        if path.exists():
+            groups[label] = json.loads(path.read_text())
+
+    if not groups:
+        print("  [skip] No group_*.json files — run: python analyze_groups.py")
+        return
+
+    signal_order = list(SIGNAL_LABELS.keys())
+    group_labels  = list(groups.keys())
+    n_groups = len(group_labels)
+    n_sigs   = len(signal_order)
+
+    matrix_r = np.zeros((n_groups, n_sigs))
+    matrix_p = np.ones((n_groups, n_sigs))
+
+    for i, (label, meta) in enumerate(groups.items()):
+        sig_map = {s["signal"]: s for s in meta.get("signals", [])}
+        for j, sig in enumerate(signal_order):
+            s = sig_map.get(sig)
+            if s:
+                matrix_r[i, j] = s["weighted_r"] if s["weighted_r"] is not None else 0.0
+                matrix_p[i, j] = s["combined_p"] if s["combined_p"] is not None else 1.0
+
+    fig_h = max(3.5, n_groups * 1.2 + 2.5)
+    fig_w = max(14, n_sigs * 1.1 + 3.0)
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h), facecolor=BG)
+    ax.set_facecolor(BG)
+    for sp in ax.spines.values():
+        sp.set_edgecolor(BORDER)
+
+    norm = TwoSlopeNorm(vmin=-0.6, vcenter=0.0, vmax=0.6)
+    im = ax.imshow(matrix_r, aspect="auto", cmap=CMAP_DIV, norm=norm)
+
+    for i in range(n_groups):
+        for j in range(n_sigs):
+            r_val = matrix_r[i, j]
+            p_val = matrix_p[i, j]
+            txt_col = TEXT_HI if abs(r_val) > 0.25 else TEXT_LO
+            r_str = f"{r_val:+.2f}" if abs(r_val) > 0.01 else "·"
+            star  = _stars(p_val)
+            ax.text(j, i, f"{r_str}\n{star}" if star else r_str,
+                    ha="center", va="center",
+                    color=txt_col, fontsize=9, linespacing=1.2)
+
+    sig_short = [
+        SIGNAL_LABELS[s].replace(" ratio", "").replace(" commit", "").replace(" file", "")
+        for s in signal_order
+    ]
+    ax.set_xticks(range(n_sigs))
+    ax.set_xticklabels(sig_short, rotation=35, ha="right", color=TEXT_LO, fontsize=9)
+    ax.xaxis.tick_top()
+    ax.xaxis.set_label_position("top")
+    ax.set_yticks(range(n_groups))
+    ax.set_yticklabels(group_labels, fontsize=11.5)
+    # Color group labels
+    group_colors = [C_INSTR_STYLE, "#79c0ff", C_TAG]
+    for lbl, col in zip(ax.get_yticklabels(), group_colors):
+        lbl.set_color(col)
+    ax.tick_params(length=0)
+
+    cbar = fig.colorbar(im, ax=ax, orientation="horizontal",
+                        fraction=0.03, pad=0.22, shrink=0.45)
+    cbar.ax.tick_params(colors=TEXT_LO, labelsize=8)
+    cbar.ax.set_xlabel(
+        "weighted rank-biserial r  (negative = lower in Copilot, positive = higher)",
+        color=TEXT_LO, fontsize=8.5)
+    cbar.outline.set_edgecolor(BORDER)
+    cbar.ax.set_facecolor(SURFACE)
+
+    # Summary bars on the right: fraction of signals significant
+    ax_right = ax.inset_axes([1.02, 0, 0.07, 1.0])
+    ax_right.set_facecolor(SURFACE)
+    for sp in ax_right.spines.values():
+        sp.set_edgecolor(BORDER)
+    fractions = []
+    for label, meta in groups.items():
+        n = meta.get("n_signals_significant", 0)
+        fractions.append(n / 15)
+    ax_right.barh(range(n_groups), fractions,
+                  color=group_colors, alpha=0.75, height=0.55)
+    for i, f in enumerate(fractions):
+        ax_right.text(f + 0.01, i, f"{f*15:.0f}/15",
+                      va="center", ha="left", color=group_colors[i],
+                      fontsize=9, fontweight="bold")
+    ax_right.set_xlim(0, 1.0)
+    ax_right.set_xticks([0, 0.5, 1.0])
+    ax_right.set_xticklabels(["0", ".5", "1"], color=TEXT_LO, fontsize=8)
+    ax_right.set_yticks([])
+    ax_right.set_title("frac.\nsig.", color=TEXT_LO, fontsize=8, pad=4)
+    ax_right.tick_params(colors=TEXT_LO)
+
+    fig.text(0.01, 0.01,
+             "★ p < 0.05   ★★ p < 0.01   · no meaningful effect  "
+             "|  PROCESS group includes NLWeb (task-type outlier) — see analyze_groups.py",
+             color=TEXT_LO, fontsize=8, ha="left", va="bottom", alpha=0.8)
+
+    fig.suptitle(
+        "Group comparison: does LLM instruction file type predict signal suppression?",
+        color=TEXT_HI, fontsize=13, fontweight="bold",
+    )
+    ax.set_title(
+        "STYLE group (0/15 sig) vs. PROCESS group (8/15, size-confounded by NLWeb) vs. NONE (4/15)\n"
+        "Result: coding style instructions wash out the Copilot signal — by design",
+        color=TEXT_LO, fontsize=9.5, pad=42,
+    )
+    total_pairs = sum(
+        meta.get("n_pairs_total", 0) for meta in groups.values()
+    )
+    _watermark(fig, total_pairs, synthetic)
+    _save(fig, "fig5_groups.png", synthetic)
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -592,6 +728,7 @@ def main() -> None:
     fig2_forest(results, synthetic)
     fig3_heatmap(results, synthetic)
     fig4_pairs(reports_dir / ("synthetic" if synthetic else ""), results, synthetic)
+    fig5_groups(reports_dir, synthetic)
 
     print()
     print("Done.  → docs/img/")

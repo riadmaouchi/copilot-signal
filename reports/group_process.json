@@ -1,0 +1,161 @@
+{
+  "group": "PROCESS",
+  "scopes": [
+    "FrancescoCiulla/NLWeb",
+    "IstiN/dmtools-agents",
+    "andy-herman/pensieve",
+    "jhkidd/world-cup-2026-sweepstake",
+    "odlhassan/JIRA-SCRIPT"
+  ],
+  "eligible_scopes": [
+    "FrancescoCiulla/NLWeb",
+    "jhkidd/world-cup-2026-sweepstake",
+    "odlhassan/JIRA-SCRIPT"
+  ],
+  "outliers": [
+    "FrancescoCiulla/NLWeb"
+  ],
+  "n_repos_total": 5,
+  "n_repos_eligible": 3,
+  "n_pairs_total": 43,
+  "n_signals_significant": 8,
+  "fraction_significant": 0.533,
+  "signals": [
+    {
+      "signal": "files_changed",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.187,
+      "combined_p": 0.0009,
+      "significant_at_05": true,
+      "n_sig_repos": 2
+    },
+    {
+      "signal": "net_lines",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.396,
+      "combined_p": 0.0007,
+      "significant_at_05": true,
+      "n_sig_repos": 2
+    },
+    {
+      "signal": "total_churn",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.583,
+      "combined_p": 0.0001,
+      "significant_at_05": true,
+      "n_sig_repos": 2
+    },
+    {
+      "signal": "cross_module_ratio",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.119,
+      "combined_p": 0.0009,
+      "significant_at_05": true,
+      "n_sig_repos": 2
+    },
+    {
+      "signal": "is_large",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.475,
+      "combined_p": 0.0611,
+      "significant_at_05": false,
+      "n_sig_repos": 1
+    },
+    {
+      "signal": "is_refactor",
+      "n_repos": 2,
+      "n_pairs_total": 31,
+      "weighted_r": -1.0,
+      "combined_p": 0.4482,
+      "significant_at_05": false,
+      "n_sig_repos": 0
+    },
+    {
+      "signal": "touches_tests",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.07,
+      "combined_p": 0.8906,
+      "significant_at_05": false,
+      "n_sig_repos": 0
+    },
+    {
+      "signal": "test_file_ratio",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.229,
+      "combined_p": 0.8032,
+      "significant_at_05": false,
+      "n_sig_repos": 0
+    },
+    {
+      "signal": "message_length",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.463,
+      "combined_p": 0.0323,
+      "significant_at_05": true,
+      "n_sig_repos": 1
+    },
+    {
+      "signal": "has_conventional_commit",
+      "n_repos": 1,
+      "n_pairs_total": 12,
+      "weighted_r": 0.733,
+      "combined_p": 0.375,
+      "significant_at_05": false,
+      "n_sig_repos": 0
+    },
+    {
+      "signal": "comment_density",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": 0.182,
+      "combined_p": 0.0174,
+      "significant_at_05": true,
+      "n_sig_repos": 1
+    },
+    {
+      "signal": "docstring_density",
+      "n_repos": 2,
+      "n_pairs_total": 31,
+      "weighted_r": -0.742,
+      "combined_p": 0.1001,
+      "significant_at_05": false,
+      "n_sig_repos": 1
+    },
+    {
+      "signal": "type_annotation_ratio",
+      "n_repos": 2,
+      "n_pairs_total": 31,
+      "weighted_r": -0.521,
+      "combined_p": 0.1256,
+      "significant_at_05": false,
+      "n_sig_repos": 1
+    },
+    {
+      "signal": "try_density",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": -0.063,
+      "combined_p": 0.0422,
+      "significant_at_05": true,
+      "n_sig_repos": 1
+    },
+    {
+      "signal": "blank_line_ratio",
+      "n_repos": 3,
+      "n_pairs_total": 43,
+      "weighted_r": 0.116,
+      "combined_p": 0.0,
+      "significant_at_05": true,
+      "n_sig_repos": 3
+    }
+  ],
+  "note": "NLWeb flagged as task-type outlier (10/15 sig from size confound, not instruction failure)"
+}
