@@ -57,6 +57,24 @@ Exception: NLWeb shows the *opposite* (both signals lower). In that repo, Copilo
 
 ---
 
+## LLM Instruction Files as a Confound
+
+A post-hoc check: 8/11 repos in the corpus have explicit LLM instruction files (`CLAUDE.md`, `.github/copilot-instructions.md`, `AGENTS.md`). The content of those files predicts the null result better than any signal:
+
+| Repo | Instruction file | Content type | Sig/15 |
+|------|-----------------|-------------|--------|
+| microsoft/duroxide-pg | `.github/copilot-instructions.md` (8 KB) | Full coding style guide + architecture | **0** |
+| SamMRoberts/agentic-engineering | `AGENTS.md` (13 KB) | Detailed coding conventions | **0** |
+| sennap/studio-senn | `.github/copilot-instructions.md` (3.8 KB) | Style guide | **1** |
+| michaeljolley/io | *none* | — | **5** |
+| jhkidd/world-cup-sweepstake | `.github/copilot-instructions.md` (1.2 KB) | Process workflow only, no style | **5** |
+
+**When a repo provides explicit coding style instructions, Copilot follows them.** The AI produces code indistinguishable from the developer's manual style — by design. The signal washes out not because the tool has no effect, but because the team specifically programmed the effect away.
+
+This is a meta-finding: *the better the AI integration (proper instruction files, style guides), the harder it is to detect statistically.* Repos that show detectable differences are the ones using Copilot without style guidance — exactly the lower-maturity adoption pattern.
+
+---
+
 ## Signal × Repo Consistency
 
 ![Signal heatmap](docs/img/fig3_heatmap.png)
