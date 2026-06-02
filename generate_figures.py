@@ -47,6 +47,28 @@ CMAP_DIV = LinearSegmentedColormap.from_list(
 REPORTS_DIR = Path("reports")
 IMG_DIR     = Path("docs/img")
 
+# Repos with LLM coding-style instruction files (checked June 2026).
+# Key = full "owner/repo" scope.  Value = brief description.
+# Presence predicts null result: repos with detailed style guides → 0/15 sig.
+LLM_INSTRUCTIONS: dict[str, str] = {
+    "FrancescoCiulla/NLWeb":               "CLAUDE.md (architecture map, no style rules)",
+    "odlhassan/JIRA-SCRIPT":               "CLAUDE.md 22KB + AGENTS.md (workspace memory)",
+    "jhkidd/world-cup-2026-sweepstake":    ".github/copilot-instructions.md (process workflow only)",
+    "microsoft/duroxide-pg":               ".github/copilot-instructions.md 8KB (full style guide)",
+    "SamMRoberts/agentic-engineering":     "AGENTS.md 13KB (detailed coding conventions)",
+    "sennap/studio-senn":                  ".github/copilot-instructions.md 3.8KB (style guide)",
+    "IstiN/dmtools-agents":                ".github/copilot-instructions.md + AGENTS.md",
+    "andy-herman/pensieve":                "AGENTS.md 10KB",
+}
+
+# Repos where instructions explicitly govern coding STYLE (not just project setup/process).
+# These are the ones that predictably produce null results.
+LLM_STYLE_INSTRUCTIONS: set[str] = {
+    "microsoft/duroxide-pg",
+    "SamMRoberts/agentic-engineering",
+    "sennap/studio-senn",
+}
+
 SIGNAL_LABELS = {
     # Level A — process
     "files_changed":          "Files changed",
@@ -133,31 +155,60 @@ def fig1_corpus(results: list[dict], synthetic: bool) -> None:
     if not rows:
         return
 
-    names  = [r["scope"].split("/")[-1] for r in rows]
-    pairs  = [r["n_pairs"] for r in rows]
+    names   = [r["scope"].split("/")[-1] for r in rows]
+    scopes  = [r["scope"] for r in rows]
+    pairs   = [r["n_pairs"] for r in rows]
     authors = [r["n_authors"] for r in rows]
+
+    # Bar color: grey for repos with style instructions (null result expected),
+    # orange for repos without (signal possible).
+    C_INSTR_STYLE = "#6e7681"   # grey — style-instructed, null
+    C_INSTR_PROC  = "#79c0ff"   # light blue — process/arch instructions only
+    C_NO_INSTR    = C_TAG       # orange — no instructions
+
+    def _bar_color(scope: str) -> str:
+        if scope in LLM_STYLE_INSTRUCTIONS:
+            return C_INSTR_STYLE
+        if scope in LLM_INSTRUCTIONS:
+            return C_INSTR_PROC
+        return C_NO_INSTR
+
+    bar_colors = [_bar_color(s) for s in scopes]
 
     fig, ax = plt.subplots(figsize=(12, max(4, len(rows) * 0.75 + 1.5)), facecolor=BG)
     _ax_dark(ax)
 
     y = np.arange(len(rows))
-    bars = ax.barh(y, pairs, color=C_TAG, alpha=0.85, height=0.55,
-                   label="Matched pairs", zorder=3)
+    bars = ax.barh(y, pairs, color=bar_colors, alpha=0.88, height=0.55, zorder=3)
 
-    for i, (bar, n_p, n_a) in enumerate(zip(bars, pairs, authors)):
+    for i, (bar, n_p, n_a, scope) in enumerate(zip(bars, pairs, authors, scopes)):
+        instr_tag = ""
+        if scope in LLM_STYLE_INSTRUCTIONS:
+            instr_tag = "  ⚙ style instr."
+        elif scope in LLM_INSTRUCTIONS:
+            instr_tag = "  ⚙ process instr."
         ax.text(n_p + max(pairs) * 0.012, i,
-                f"{n_p} pairs · {n_a} authors",
-                va="center", ha="left", color=C_TAG,
-                fontsize=10, fontweight="bold")
+                f"{n_p} pairs · {n_a} authors{instr_tag}",
+                va="center", ha="left",
+                color=bar_colors[i], fontsize=10, fontweight="bold")
 
     ax.set_yticks(y)
     ax.set_yticklabels(names, fontsize=11.5, color=TEXT_HI)
     ax.invert_yaxis()
     ax.set_xlabel("Matched pairs  (Copilot-tagged ↔ nearest untagged, same author, ≤14 days)",
                   color=TEXT_LO, fontsize=10)
-    ax.set_xlim(0, max(pairs) * 1.45)
+    ax.set_xlim(0, max(pairs) * 1.55)
     ax.grid(axis="x", color=GRID, lw=0.5, alpha=0.7, zorder=0)
     ax.set_axisbelow(True)
+
+    legend_items = [
+        mpatches.Patch(color=C_NO_INSTR,    label="No LLM instruction files"),
+        mpatches.Patch(color=C_INSTR_PROC,  label="⚙ Process/architecture instructions only"),
+        mpatches.Patch(color=C_INSTR_STYLE, label="⚙ Coding style instructions → signal suppressed"),
+    ]
+    ax.legend(handles=legend_items, loc="lower right",
+              facecolor=SURFACE, edgecolor=BORDER,
+              labelcolor=TEXT_LO, fontsize=9, framealpha=0.9)
 
     total_pairs  = sum(pairs)
     total_authors = sum(authors)
@@ -168,7 +219,7 @@ def fig1_corpus(results: list[dict], synthetic: bool) -> None:
     )
     ax.set_title(
         "Each pair: one Copilot-tagged commit matched to the nearest untagged commit\n"
-        "from the same author in the same repo within 14 days",
+        "from the same author in the same repo within 14 days  ·  ⚙ = LLM instruction file present",
         color=TEXT_LO, fontsize=9.5, pad=8,
     )
     _watermark(fig, total_pairs, synthetic)
@@ -287,6 +338,19 @@ def fig3_heatmap(results: list[dict], synthetic: bool) -> None:
     signal_order = list(SIGNAL_LABELS.keys())
     repo_names = [r["scope"].split("/")[-1] for r in repo_results]
 
+    scopes = [r["scope"] for r in repo_results]
+
+    # Annotate repo names with ⚙ if they have LLM instruction files
+    def _annotated_repo_name(scope: str) -> str:
+        short = scope.split("/")[-1]
+        if scope in LLM_STYLE_INSTRUCTIONS:
+            return f"{short}  ⚙ style"
+        if scope in LLM_INSTRUCTIONS:
+            return f"{short}  ⚙ instr."
+        return short
+
+    repo_names = [_annotated_repo_name(s) for s in scopes]
+
     n_repos = len(repo_results)
     n_sigs  = len(signal_order)
     matrix_r = np.zeros((n_repos, n_sigs))
@@ -332,7 +396,19 @@ def fig3_heatmap(results: list[dict], synthetic: bool) -> None:
     ax.xaxis.tick_top()
     ax.xaxis.set_label_position("top")
     ax.set_yticks(range(n_repos))
-    ax.set_yticklabels(repo_names, fontsize=10.5, color=TEXT_HI)
+
+    # Color repo labels: grey for style-instructed, light blue for process-instructed
+    ytick_colors = []
+    for scope in scopes:
+        if scope in LLM_STYLE_INSTRUCTIONS:
+            ytick_colors.append("#6e7681")
+        elif scope in LLM_INSTRUCTIONS:
+            ytick_colors.append("#79c0ff")
+        else:
+            ytick_colors.append(TEXT_HI)
+    ax.set_yticklabels(repo_names, fontsize=10.5)
+    for lbl, color in zip(ax.get_yticklabels(), ytick_colors):
+        lbl.set_color(color)
     ax.tick_params(length=0)
 
     # Colorbar
@@ -349,13 +425,24 @@ def fig3_heatmap(results: list[dict], synthetic: bool) -> None:
              "★ p < 0.05   ★★ p < 0.01   ★★★ p < 0.001   · no meaningful effect",
              color=TEXT_LO, fontsize=8, ha="left", va="bottom", alpha=0.8)
 
+    # Simpler legend as text patches below chart
+    legend_items = [
+        mpatches.Patch(color=TEXT_HI,    label="No LLM instruction files"),
+        mpatches.Patch(color="#79c0ff",  label="⚙ Process/arch instructions"),
+        mpatches.Patch(color="#6e7681",  label="⚙ Coding style instructions → signal suppressed"),
+    ]
+    ax.legend(handles=legend_items, loc="lower right",
+              facecolor=SURFACE, edgecolor=BORDER,
+              labelcolor=TEXT_LO, fontsize=8.5, framealpha=0.9,
+              title="Row label color", title_fontsize=8)
+
     fig.suptitle(
         "Signal × repo consistency — rank-biserial effect size",
         color=TEXT_HI, fontsize=13, fontweight="bold",
     )
     ax.set_title(
         "Consistent orange columns = signals reliably higher in Copilot commits  "
-        "·  Mixed cells = repo-specific noise",
+        "·  Mixed cells = repo-specific noise  ·  Grey rows = style-instructed repos",
         color=TEXT_LO, fontsize=9.5, pad=40,
     )
     _watermark(fig, sum(r["n_pairs"] for r in repo_results), synthetic)
